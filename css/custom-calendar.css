@@ -1,0 +1,204 @@
+/* Основные стили */
+#custom-calendar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+#custom-calendar.calendar-loaded {
+  opacity: 1;
+}
+
+/* Анимация смены месяца/вида */
+#custom-calendar.calendar-view-changing .fc-view-harness-active {
+  animation: calendarFade 0.3s ease-in-out;
+}
+
+@keyframes calendarFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fc .fc-button {
+  font-size: 0.75em;
+}
+.fc .fc-toolbar-title {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.fc-event {
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.fc-event:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для мини-календаря */
+.mini-calendar {
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mini-calendar .fc-toolbar {
+  padding: 0 0 10px 0;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+}
+
+.mini-calendar .fc-toolbar-title {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0;
+}
+
+.mini-calendar .fc-col-header-cell {
+  font-size: 0.8em;
+  padding: 5px 0;
+}
+
+.mini-calendar .fc-daygrid-day {
+  font-size: 0.9em;
+}
+
+.mini-calendar .fc-daygrid-event {
+  margin: 1px 0;
+  padding: 1px 3px;
+}
+
+.mini-calendar .fc-daygrid-day-top {
+  justify-content: center;
+  padding: 2px;
+}
+
+.mini-calendar .fc-daygrid-day-number {
+  font-size: 0.9em;
+  font-weight: normal;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  #custom-calendar {
+    font-size: 14px;
+  }
+
+  .fc-toolbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fc-toolbar .fc-toolbar-chunk {
+    margin-bottom: 10px;
+  }
+}
+
+/* Popup события календаря */
+.custom-calendar-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 10000;
+}
+
+.custom-calendar-modal--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.custom-calendar-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.custom-calendar-modal__content {
+  position: relative;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 24px 18px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: translateY(10px) scale(0.98);
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.custom-calendar-modal--open .custom-calendar-modal__content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.custom-calendar-modal__title {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.custom-calendar-modal__meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.custom-calendar-modal__description {
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  white-space: pre-line;
+}
+
+.custom-calendar-modal__link {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #2271b1;
+  text-decoration: none;
+}
+
+.custom-calendar-modal__link:hover {
+  text-decoration: underline;
+}
+
+.custom-calendar-modal__close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+}
+
+.custom-calendar-modal__close:hover {
+  color: #000;
+}
+
+/* Блокируем прокрутку страницы под модальным окном */
+body.custom-calendar-modal-open {
+  overflow: hidden;
+}

@@ -1,0 +1,62 @@
+# WordPress specific
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/languages/
+*.sql
+
+# WordPress plugins to ignore (if developing locally)
+wp-content/plugins/akismet/
+wp-content/plugins/hello.php
+
+# WordPress themes to ignore (if developing locally)
+wp-content/themes/twenty*/
+
+# Plugin development
+*.log
+.svn/
+ CVS/
+node_modules/
+bower_components/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Development and IDE specific
+.vscode/
+.idea/
+*.tmp
+*.bak
+*.orig
+*~
+
+# Environment specific
+.env
+.env.local
+.env.production
+.env.development
+
+# Composer/Packages
+vendor/
+composer.lock
+
+# Build/Cache
+build/
+dist/
+*.min.js
+*.min.css
+cache/
+tmp/
+
+# Security
+.htaccess
+wp-config-sample.php
+
+# Custom Calendar Plugin specific - if there are any cache or temp files
+cache/
+tmp/
+*.log
